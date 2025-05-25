@@ -3,6 +3,11 @@ import pygame
 import os
 import sys
 import json
+import time
+from imu import ICM20948
+
+# ====== 初始化 IMU ======
+imu = ICM20948()
 
 # ====== 設定路徑 ======
 ASSET_DIR = "assets"
@@ -128,8 +133,12 @@ def draw_battle():
 
 def player_turn(action):
     global dragon_hp
+    dmg = 0
     if action == "attack":
-        dragon_hp -= 20
+        print("wait 1 sec...")
+        time.sleep(1)
+        dmg = imu.slash_power()
+        dragon_hp -= dmg
     elif action == "magic":
         dragon_hp -= 35
 
@@ -145,6 +154,13 @@ while running:
     if current_id == "dragon_battle":
         in_battle = True
 
+    node = script[current_id]
+    bg_img = node.get("bg")
+    if bg_img:
+        if bg_img not in image_cache:
+            image_cache[bg_img] = pygame.image.load(os.path.join(BG_DIR, bg_img))
+        screen.blit(image_cache[bg_img], (0, 0))
+
     if in_battle:
         draw_battle()
         if dragon_hp <= 0:
@@ -154,13 +170,6 @@ while running:
             current_id = "defeat"
             in_battle = False
     else:
-        node = script[current_id]
-        bg_img = node.get("bg")
-        if bg_img:
-            if bg_img not in image_cache:
-                image_cache[bg_img] = pygame.image.load(os.path.join(BG_DIR, bg_img))
-            screen.blit(image_cache[bg_img], (0, 0))
-
         draw_character(node.get("left"), "left")
         draw_character(node.get("right"), "right")
 
