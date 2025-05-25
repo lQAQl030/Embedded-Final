@@ -15,6 +15,7 @@ app = Flask(__name__)
 def home():
     return 'Raspberry Pi GPIO Server is running!'
 
+@app.route('/slash')
 def slash_power():
     return imu.slash_power()
 
