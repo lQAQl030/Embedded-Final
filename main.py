@@ -4,10 +4,6 @@ import os
 import sys
 import json
 import time
-from imu import ICM20948
-
-# ====== 初始化 IMU ======
-imu = ICM20948()
 
 # ====== 設定路徑 ======
 ASSET_DIR = "assets"
@@ -137,7 +133,6 @@ def player_turn(action):
     if action == "attack":
         print("wait 1 sec...")
         time.sleep(1)
-        dmg = imu.slash_power()
         dragon_hp -= dmg
     elif action == "magic":
         dragon_hp -= 35
