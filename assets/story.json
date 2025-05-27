@@ -32,7 +32,11 @@
   },
 
   "dragon_battle": {
-    "bg": "cave.png"
+    "bg": "cave.png",
+    "battle": "True",
+    "enemy_hp": "150",
+    "victory": "victory",
+    "defeat": "defeat"
   },
 
   "victory": {

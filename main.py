@@ -1,9 +1,9 @@
-# （以下是整合了戰鬥系統與魔法攻擊的完整遊戲程式碼）
 import pygame
 import os
 import sys
 import json
 import time
+import requests
 
 # ====== 設定路徑 ======
 ASSET_DIR = "assets"
@@ -13,14 +13,13 @@ SFX_DIR = os.path.join(ASSET_DIR, "sfx")
 TEXTBOX_IMG = pygame.image.load(os.path.join(ASSET_DIR, "textbox.png"))
 FONT_PATH = "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
 SCRIPT_PATH = os.path.join(ASSET_DIR, "story.json")
+PI_IP = "192.168.1.100"
 
 # ====== 初始化 ======
 pygame.init()
-pygame.mixer.init()
 screen = pygame.display.set_mode((540, 360))
 font = pygame.font.Font(FONT_PATH, 20)
 clock = pygame.time.Clock()
-click_sound = pygame.mixer.Sound(os.path.join(SFX_DIR, "click.wav"))
 
 # ====== 劇情資料 ======
 def load_script(path):
@@ -40,9 +39,8 @@ type_delay = 30
 image_cache = {}
 
 # ====== 戰鬥狀態 ======
-in_battle = False
 player_hp = 100
-dragon_hp = 150
+enemy_hp = -233
 battle_options = [("攻擊", "attack"), ("魔法", "magic")]
 selected_battle_action = None
 
@@ -112,7 +110,7 @@ def draw_battle():
     global choice_buttons
     choice_buttons = []
     screen.blit(TEXTBOX_IMG, (0, 240))
-    hp_text = font.render(f"凱恩 HP: {player_hp}    巨龍 HP: {dragon_hp}", True, (255, 255, 255))
+    hp_text = font.render(f"凱恩 HP: {player_hp}    巨龍 HP: {enemy_hp}", True, (255, 255, 255))
     screen.blit(hp_text, (30, 220))
 
     y = 270
@@ -128,14 +126,16 @@ def draw_battle():
         y += 40
 
 def player_turn(action):
-    global dragon_hp
+    global enemy_hp
     dmg = 0
     if action == "attack":
-        print("wait 1 sec...")
-        time.sleep(1)
-        dragon_hp -= dmg
+        response = requests.get(f"http://{PI_IP}:5000/slash")
+        dmg = float(response.text)
+        enemy_hp -= dmg
     elif action == "magic":
-        dragon_hp -= 35
+        response = requests.get(f"http://{PI_IP}:5000/magic")
+        dmg = float(response.text)
+        enemy_hp -= dmg
 
 def dragon_turn():
     global player_hp
@@ -146,28 +146,39 @@ running = True
 while running:
     screen.fill((0, 0, 0))
 
-    if current_id == "dragon_battle":
-        in_battle = True
+    # 判斷離開
+    if current_id == 'quit':
+        running = False
 
+    # 遊戲開始
+    if current_id == 'start':
+        player_hp = 100
+
+    
+    # 取得現在 id 的 json
     node = script[current_id]
+
+    # 畫背景
     bg_img = node.get("bg")
     if bg_img:
         if bg_img not in image_cache:
             image_cache[bg_img] = pygame.image.load(os.path.join(BG_DIR, bg_img))
         screen.blit(image_cache[bg_img], (0, 0))
+    
+    # 畫人物
+    draw_character(node.get("left"), "left")
+    draw_character(node.get("right"), "right")
 
-    if in_battle:
+    if node.get("battle"):
+        enemy_hp = float(node.get("enemy_hp")) if (enemy_hp == -233) else enemy_hp
         draw_battle()
-        if dragon_hp <= 0:
-            current_id = "victory"
-            in_battle = False
+        if enemy_hp <= 0:
+            current_id = node.get("victory")
+            enemy_hp = -233
         elif player_hp <= 0:
-            current_id = "defeat"
-            in_battle = False
+            current_id = node.get("defeat")
+            enemy_hp = -233
     else:
-        draw_character(node.get("left"), "left")
-        draw_character(node.get("right"), "right")
-
         if "choice" in node:
             choosing = True
             screen.blit(TEXTBOX_IMG, (0, 240))
@@ -186,17 +197,16 @@ while running:
             if choosing:
                 for rect, target_id in choice_buttons:
                     if rect.collidepoint(pygame.mouse.get_pos()):
-                        click_sound.play()
                         current_id = target_id
                         typed_text = ""
                         char_index = 0
                         choosing = False
                         break
-            elif in_battle:
+            elif node.get("battle"):
                 for rect, action in choice_buttons:
                     if rect.collidepoint(pygame.mouse.get_pos()):
                         player_turn(action)
-                        if dragon_hp > 0:
+                        if enemy_hp > 0:
                             pygame.time.delay(500)
                             dragon_turn()
                         break
