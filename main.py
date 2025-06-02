@@ -2,7 +2,6 @@ import pygame
 import os
 import sys
 import json
-import time
 import requests
 
 # ====== 設定路徑 ======
@@ -13,7 +12,7 @@ SFX_DIR = os.path.join(ASSET_DIR, "sfx")
 TEXTBOX_IMG = pygame.image.load(os.path.join(ASSET_DIR, "textbox.png"))
 FONT_PATH = "/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc"
 SCRIPT_PATH = os.path.join(ASSET_DIR, "story.json")
-PI_IP = "192.168.1.100"
+PI_IP = "192.168.1.106"
 
 # ====== 初始化 ======
 pygame.init()
@@ -37,12 +36,21 @@ char_index = 0
 type_timer = 0
 type_delay = 30
 image_cache = {}
+lock = 3
 
 # ====== 戰鬥狀態 ======
 player_hp = 100
 enemy_hp = -233
 battle_options = [("攻擊", "attack"), ("魔法", "magic")]
 selected_battle_action = None
+
+# ====== Lock Picking 狀態 ======
+lock_picking_active = False
+lock_attempts = 0
+lock_success = False
+lock_max_attempts = 5
+lock_next_id = ""
+lock_fail_id = ""
 
 # ====== 工具函式 ======
 def wrap_text(text, font, max_width):
@@ -137,9 +145,33 @@ def player_turn(action):
         dmg = float(response.text)
         enemy_hp -= dmg
 
-def dragon_turn():
+def enemy_turn():
     global player_hp
     player_hp -= 25
+
+def start_lock_picking(success_target, fail_target):
+    global lock_picking_active, lock_attempts, lock_success, lock_next_id, lock_fail_id
+    lock_picking_active = True
+    lock_attempts = 0
+    lock_success = False
+    lock_next_id = success_target
+    lock_fail_id = fail_target
+
+def draw_lock_picking():
+    global lock_attempts
+    screen.blit(TEXTBOX_IMG, (0, 240))
+    status = "開鎖成功！" if lock_success else f"開鎖中...（{lock_attempts}/{lock_max_attempts}）"
+    text_surface = font.render(status, True, (255, 255, 255))
+    screen.blit(text_surface, (30, 260))
+    button_rect = pygame.Rect(180, 300, 180, 30)
+    mouse_pos = pygame.mouse.get_pos()
+    is_hovered = button_rect.collidepoint(mouse_pos)
+    pygame.draw.rect(screen, (100, 100, 0) if is_hovered else (70, 70, 0), button_rect, border_radius=6)
+    pygame.draw.rect(screen, (255, 255, 255), button_rect, 2, border_radius=6)
+    btn_text = font.render("嘗試開鎖", True, (255, 255, 255))
+    screen.blit(btn_text, (button_rect.x + 40, button_rect.y + 5))
+    return button_rect
+
 
 # ====== 主迴圈 ======
 running = True
@@ -157,6 +189,12 @@ while running:
     
     # 取得現在 id 的 json
     node = script[current_id]
+
+    # 開鎖
+    if "lock_event" in node and not lock_picking_active:
+            success = node["lock_event"]["success"]
+            fail = node["lock_event"]["fail"]
+            start_lock_picking(success, fail)
 
     # 畫背景
     bg_img = node.get("bg")
@@ -178,6 +216,16 @@ while running:
         elif player_hp <= 0:
             current_id = node.get("defeat")
             enemy_hp = -233
+    elif lock_picking_active:
+        lock_button = draw_lock_picking()
+        if lock_success:
+            pygame.time.delay(1000)
+            current_id = lock_next_id
+            lock_picking_active = False
+        elif lock_attempts >= lock_max_attempts:
+            pygame.time.delay(1000)
+            current_id = lock_fail_id
+            lock_picking_active = False
     else:
         if "choice" in node:
             choosing = True
@@ -208,8 +256,17 @@ while running:
                         player_turn(action)
                         if enemy_hp > 0:
                             pygame.time.delay(500)
-                            dragon_turn()
+                            enemy_turn()
                         break
+            elif lock_picking_active:
+                if lock_button.collidepoint(pygame.mouse.get_pos()) and lock_attempts < lock_max_attempts:
+                    lock_attempts += 1
+                    try:
+                        response = requests.get(f"http://{PI_IP}:5000/lockpick")
+                        if response.status_code == 200 and response.text.strip() == "1":
+                            lock_success = True
+                    except:
+                        print("無法連線到開鎖伺服器")
             else:
                 if "text" in script[current_id] and char_index < len(script[current_id]["text"]):
                     typed_text = script[current_id]["text"]

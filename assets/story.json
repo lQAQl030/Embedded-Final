@@ -1,81 +1,79 @@
 {
-  "start": {
-    "bg": "village.png",
-    "speaker": "旁白",
-    "text": "從前，有一位英勇的騎士名叫凱恩，接受了國王的命令，要前往黑山打敗惡龍，拯救被囚禁的公主艾蓮娜。",
-    "next": "village2"
-  },
-  "village2": {
-    "bg": "village.png",
-    "speaker": "國王",
-    "text": "凱恩，這是我們唯一的希望。帶上你的劍與魔法，去打敗那條巨龍吧！",
-    "next": "forest"
-  },
-  "forest": {
-    "bg": "forest.png",
-    "speaker": "凱恩",
-    "text": "我一定會成功，為了王國，也為了我自己！",
-    "next": "cave_entrance"
-  },
-  "cave_entrance": {
-    "bg": "cave.png",
-    "speaker": "旁白",
-    "text": "在經過長途跋涉後，凱恩終於來到了黑山的山洞入口，巨龍就藏身其中……",
-    "next": "dragon_intro"
-  },
-  "dragon_intro": {
-    "bg": "cave.png",
-    "speaker": "巨龍",
-    "right": "dragon.png",
-    "text": "愚蠢的人類，準備迎接你的末日吧！",
-    "next": "dragon_battle"
-  },
-
-  "dragon_battle": {
-    "bg": "cave.png",
-    "battle": "True",
-    "enemy_hp": "150",
-    "victory": "victory",
-    "defeat": "defeat"
-  },
-
-  "victory": {
-    "bg": "cave.png",
-    "speaker": "凱恩",
-    "text": "終於結束了……我做到了！",
-    "next": "rescue"
-  },
-  "rescue": {
-    "bg": "castle.png",
-    "speaker": "艾蓮娜",
-    "left": "princess.png",
-    "text": "凱恩！你真的來救我了！謝謝你！",
-    "next": "ending"
-  },
-  "ending": {
-    "bg": "village.png",
-    "speaker": "旁白",
-    "text": "凱恩成功打敗惡龍，救回了公主，成為了王國的英雄。",
-    "next": "end"
-  },
-  "defeat": {
-    "bg": "cave.png",
-    "speaker": "旁白",
-    "text": "凱恩不敵惡龍，犧牲在山洞之中。王國陷入了黑暗……",
-    "next": "end"
-  },
-  "end": {
-    "bg": "black.png",
-    "speaker": "系統",
-    "text": "遊戲結束，感謝遊玩。",
-    "choice": {
-      "重新開始": "start",
-      "離開遊戲": "quit"
+    "start": {
+        "bg": "village.png",
+        "speaker": "旁白",
+        "text": "從前，有一位英勇的騎士名叫凱恩，接受了國王的命令，要前往黑山打敗惡龍，拯救被囚禁的公主艾蓮娜。",
+        "next": "village2"
+    },
+    "village2": {
+        "bg": "village.png",
+        "speaker": "國王",
+        "text": "凱恩，這是我們唯一的希望。帶上你的劍與魔法，去打敗那條巨龍吧！",
+        "next": "forest"
+    },
+    "forest": {
+        "bg": "forest.png",
+        "speaker": "凱恩",
+        "text": "我一定會成功，為了王國，也為了我自己！",
+        "next": "cave_entrance"
+    },
+    "cave_entrance": {
+        "bg": "cave.png",
+        "speaker": "旁白",
+        "text": "在經過長途跋涉後，凱恩終於來到了黑山的山洞入口，巨龍就藏身其中……",
+        "next": "dragon_intro"
+    },
+    "dragon_intro": {
+        "bg": "cave.png",
+        "speaker": "巨龍",
+        "right": "dragon.png",
+        "text": "愚蠢的人類，準備迎接你的末日吧！",
+        "next": "dragon_battle"
+    },
+    "dragon_battle": {
+        "bg": "cave.png",
+        "battle": "True",
+        "enemy_hp": "150",
+        "victory": "victory",
+        "defeat": "defeat"
+    },
+    "victory": {
+        "bg": "cave.png",
+        "speaker": "凱恩",
+        "text": "終於結束了……我做到了！",
+        "next": "rescue"
+    },
+    "rescue": {
+        "bg": "castle.png",
+        "speaker": "艾蓮娜",
+        "left": "princess.png",
+        "text": "凱恩！你真的來救我了！謝謝你！",
+        "next": "ending"
+    },
+    "ending": {
+        "bg": "village.png",
+        "speaker": "旁白",
+        "text": "凱恩成功打敗惡龍，救回了公主，成為了王國的英雄。",
+        "next": "end"
+    },
+    "defeat": {
+        "bg": "cave.png",
+        "speaker": "旁白",
+        "text": "凱恩不敵惡龍，犧牲在山洞之中。王國陷入了黑暗……",
+        "next": "end"
+    },
+    "end": {
+        "bg": "black.png",
+        "speaker": "系統",
+        "text": "遊戲結束，感謝遊玩。",
+        "choice": {
+            "重新開始": "start",
+            "離開遊戲": "quit"
+        }
+    },
+    "quit": {
+        "bg": "black.png",
+        "speaker": "系統",
+        "text": "歡迎再次挑戰！"
     }
-  },
-  "quit": {
-    "bg": "black.png",
-    "speaker": "系統",
-    "text": "歡迎再次挑戰！"
-  }
 }
