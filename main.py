@@ -227,6 +227,8 @@ while running:
     # 遊戲開始
     if current_id == 'start':
         player_hp = 100
+        enemy_hp = -233
+        enemy_dmg = -233
 
     
     # 取得現在 id 的 json
