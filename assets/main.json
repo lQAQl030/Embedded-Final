@@ -1,0 +1,711 @@
+{
+    "start": {
+        "bg": "dorm_dark.jpg",
+        "right": "secret_right.png",
+        "rx": 1000,
+        "ry": 700,
+        "speaker": "???",
+        "text": "沒時間解釋了庫柏！紅色九號！盡量往艦橋移動！！！",
+        "next": "start_2"
+    },
+    "start_2": {
+        "bg": "dorm.jpg",
+        "left": "sword_right.png",
+        "lx": 550,
+        "ly": 700,
+        "right": "secret_right.png",
+        "rx": 1000,
+        "ry": 700,
+        "speaker": "",
+        "text": "在你恍惚的時候，來人拋下一把劍隨即轉身離去",
+        "next": "start_3"
+    },
+    "start_3": {
+        "bg": "dorm.jpg",
+        "left": "helldiver1_left.png",
+        "lx": 300,
+        "ly": 600,
+        "right": "sword_right.png",
+        "rx": 550,
+        "ry": 700,
+        "choice": {
+            "甚麼? 該死! (拿起劍並向門外走去)": "grab_sword",
+            "(巴德又再發什麼瘋 現在可是難得的休息時間呢) (睡回去)": "back_to_sleep"
+        }
+    },
+    "back_to_sleep": {
+        "speaker": "",
+        "text": "你決定閉上眼繼續睡覺",
+        "next": "back_to_sleep_2"
+    },
+    "back_to_sleep_2": {
+        "bg": "dorm_dark.jpg",
+        "speaker": "",
+        "text": "咚！咚！ 物體沉重的掉落聲吵醒了你，你微微的睜開雙眼想要找出是甚麼打擾到你睡覺",
+        "next": "back_to_sleep_3"
+    },
+    "back_to_sleep_3": {
+        "bg": "dorm_dark.jpg",
+        "speaker": "",
+        "text": "睡眼惺忪間你彷彿看到了一個球形物體",
+        "next": "back_to_sleep_4"
+    },
+    "back_to_sleep_4": {
+        "bg": "dorm.jpg",
+        "left": "plasma_grenade.png",
+        "lx": 800,
+        "ly": 600,
+        "speaker": "庫柏",
+        "text": "這是...? 手榴!!??#$%>......",
+        "next": "back_to_sleep_5"
+    },
+    "back_to_sleep_5": {
+        "bg": "dorm_explode.jpg",
+        "speaker": "",
+        "text": "隨著一聲巨大的爆炸聲響起，整個寢室都化作了灰燼，在某些角落還可以看到某些碎肉",
+        "next": "death1"
+    },
+    "death1": {
+        "left": "plasma_grenade.png",
+        "lx": 800,
+        "ly": 600,
+        "speaker": "",
+        "text": "你死了\n死因: 手榴彈",
+        "next": "end"
+    },
+    "grab_sword": {
+        "bg": "corridor.jpg",
+        "right": "jackal.png",
+        "rx": 650,
+        "ry": 500,
+        "speaker": "",
+        "text": "剛踏出房門的那一瞬，你眼睛的餘光就撇見一頭酷似豺狼的獸形生物從走廊底端咆嘯著向你的方向衝了過來",
+        "next": "grab_sword_2"
+    },
+    "grab_sword_2": {
+        "bg": "corridor.jpg",
+        "right": "jackal.png",
+        "rx": 650,
+        "ry": 500,
+        "choice": {
+            "(舉劍迎向豺狼並準備戰鬥)": "face_jackal",
+            "(躲回寢室內)": "hide_in_dorm"
+        }
+    },
+    "hide_in_dorm": {
+        "bg": "dorm.jpg",
+        "speaker": "",
+        "text": "你選擇躲回寢室內並隱藏自己的氣息",
+        "next": "hide_in_dorm_2"
+    },
+    "hide_in_dorm_2": {
+        "bg": "dorm.jpg",
+        "speaker": "",
+        "text": "咚咚咚咚 一陣急促的跑步聲從寢室外經過，但你並不著急並決定再等等",
+        "next": "hide_in_dorm_3"
+    },
+    "hide_in_dorm_3": {
+        "bg": "dorm.jpg",
+        "speaker": "",
+        "text": "聽著外面的聲音逐漸減小，你決定向外探索看看",
+        "next": "hide_in_dorm_4"
+    },
+    "hide_in_dorm_4": {
+        "bg": "corridor.jpg",
+        "right": "jackal_face.png",
+        "rx": 650,
+        "ry": 700,
+        "speaker": "",
+        "text": "豈料就在你探頭的一瞬間，一雙黃澄澄的大眼睛正與你四目相接",
+        "next": "death2"
+    },
+    "death2": {
+        "right": "jackal_face.png",
+        "rx": 650,
+        "ry": 700,
+        "speaker": "",
+        "text": "你死了\n死因: 被豺狼一口咬住脖子導致頸動脈破裂，最後失血過多而亡",
+        "next": "end"
+    },
+    "face_jackal": {
+        "bg": "corridor.jpg",
+        "right": "jackal_tall.png",
+        "rx": 650,
+        "ry": 700,
+        "speaker": "",
+        "text": "在你思考的過程中，豺狼已經衝到你的眼前，這下只能夠戰鬥了",
+        "next": "face_jackal_2"
+    },
+    "face_jackal_2": {
+        "bg": "corridor.jpg",
+        "left": "helldiver1_combat.png",
+        "lx": 300,
+        "ly": 700,
+        "right": "jackal_tall.png",
+        "rx": 700,
+        "ry": 700,
+        "battle": {
+            "enemy_name": "豺狼",
+            "enemy_hp": "100",
+            "enemy_dmg": "25",
+            "options": [
+                ["拿劍劈砍", "attack"]
+            ],
+            "victory": "face_jackal_victory",
+            "defeat": "face_jackal_defeat"
+        }
+    },
+    "face_jackal_defeat": {
+        "bg": "corridor.jpg",
+        "right": "jackal_tall.png",
+        "rx": 650,
+        "ry": 700,
+        "speaker": "",
+        "text": "在與豺狼的戰鬥中你不慎被豺狼擊中了右臂，手中的劍已經飛到不知何處，現在等待你的只剩死亡",
+        "next": "face_jackal_defeat_2"
+    },
+    "face_jackal_defeat_2": {
+        "bg": "corridor.jpg",
+        "right": "jackal_tall.png",
+        "rx": 650,
+        "ry": 700,
+        "speaker": "庫柏",
+        "text": "痾啊啊(發出痛苦的捂嚥聲",
+        "next": "death2"
+    },
+    "face_jackal_victory": {
+        "bg": "corridor.jpg",
+        "left": "helldiver1_combat.png",
+        "lx": 300,
+        "ly": 700,
+        "speaker": "",
+        "text": "在經歷了一番苦鬥之後，你成功的斬下了豺狼的頭顱",
+        "next": "face_jackal_victory_2"
+    },
+    "face_jackal_victory_2": {
+        "bg": "corridor.jpg",
+        "left": "helldiver1_combat.png",
+        "lx": 300,
+        "ly": 700,
+        "speaker": "",
+        "text": "庫柏隨手拿起一塊布將身上的藍血擦了擦，喘著粗氣道",
+        "next": "face_jackal_victory_3"
+    },
+    "face_jackal_victory_3": {
+        "bg": "corridor.jpg",
+        "left": "helldiver1_left.png",
+        "lx": 300,
+        "ly": 600,
+        "speaker": "庫柏",
+        "text": "見鬼了，這該死的星盟到底是從哪裡冒出來的",
+        "next": "face_jackal_victory_4"
+    },
+    "face_jackal_victory_4": {
+        "bg": "corridor.jpg",
+        "left": "helldiver1_left.png",
+        "lx": 300,
+        "ly": 600,
+        "right": "panel.png",
+        "rx": 1000,
+        "ry": 900,
+        "speaker": "",
+        "text": "你想起了剛才那人的囑託，開始往艦橋的方向邁進，從寢室區移動到了餐廳門口，映入眼簾的是一塊正冒著黑煙的門禁面板",
+        "next": "face_jackal_victory_5"
+    },
+    "face_jackal_victory_5": {
+        "bg": "corridor.jpg",
+        "left": "helldiver1_left.png",
+        "lx": 300,
+        "ly": 600,
+        "right": "panel.png",
+        "rx": 1000,
+        "ry": 900,
+        "speaker": "庫柏",
+        "text": "早就跟技術部的人說不要裝這什麼破門禁，每次都要掌紋驗證真的有夠麻煩",
+        "next": "face_jackal_victory_6"
+    },
+    "face_jackal_victory_6": {
+        "bg": "corridor.jpg",
+        "left": "helldiver1_left.png",
+        "lx": 300,
+        "ly": 600,
+        "right": "panel.png",
+        "rx": 1000,
+        "ry": 900,
+        "choice": {
+            "(將手掌放在門禁裝置上)": "hand_access",
+            "(暴力破門)": "break_in_dining"
+        }
+    },
+    "break_in_dining": {
+        "bg": "corridor.jpg",
+        "left": "helldiver1_left.png",
+        "lx": 300,
+        "ly": 600,
+        "right": "panel.png",
+        "rx": 1000,
+        "ry": 900,
+        "speaker": "",
+        "text": "庫柏看著面板冒出的黑煙，臉也變得黑了起來",
+        "next": "break_in_dining_2"
+    },
+    "break_in_dining_2": {
+        "bg": "corridor.jpg",
+        "left": "panel.png",
+        "lx": 1000,
+        "ly": 900,
+        "right": "helldiver1_warmup.png",
+        "rx": 800,
+        "ry": 800,
+        "speaker": "庫柏",
+        "text": "去你媽的！(踹門",
+        "next": "break_in_dining_3"
+    },
+    "break_in_dining_3": {
+        "bg": "corridor.jpg",
+        "left": "panel.png",
+        "lx": 1000,
+        "ly": 900,
+        "right": "helldiver1_warmup.png",
+        "rx": 800,
+        "ry": 800,
+        "battle": {
+            "enemy_name": "門",
+            "enemy_hp": "50",
+            "enemy_dmg": "0",
+            "options": [
+                ["用腳踹門", "attack"]
+            ],
+            "victory": "break_in_dining_4",
+            "defeat": "end"
+        }
+    },
+    "break_in_dining_4": {
+        "bg": "corridor.jpg",
+        "left": "panel.png",
+        "lx": 1000,
+        "ly": 900,
+        "right": "helldiver1_warmup.png",
+        "rx": 800,
+        "ry": 800,
+        "speaker": "",
+        "text": "餐廳的門最終不堪重負破了一個洞",
+        "next": "get_in_dining"
+    },
+    "hand_access": {
+        "bg": "corridor.jpg",
+        "left": "panel.png",
+        "lx": 1000,
+        "ly": 900,
+        "right": "helldiver1_panel.png",
+        "rx": 800,
+        "ry": 800,
+        "speaker": "",
+        "text": "庫柏將手掌放了上去，奇蹟的是這塊面板居然還能運作並亮起了微弱的藍光",
+        "next": "hand_access_2"
+    },
+    "hand_access_2": {
+        "bg": "corridor.jpg",
+        "left": "panel.png",
+        "lx": 1000,
+        "ly": 900,
+        "right": "helldiver1_panel.png",
+        "rx": 800,
+        "ry": 800,
+        "speaker": "",
+        "text": "(請將手放在感應器上)",
+        "scan_event":{
+            "next": "hand_access_3"
+        }
+    },
+    "hand_access_3": {
+        "bg": "corridor.jpg",
+        "left": "panel.png",
+        "lx": 1000,
+        "ly": 900,
+        "right": "helldiver1_panel.png",
+        "rx": 800,
+        "ry": 800,
+        "speaker": "門禁裝置",
+        "text": "滋...滋...驗證通......過...",
+        "next": "hand_access_4"
+    },
+    "hand_access_4": {
+        "bg": "corridor.jpg",
+        "left": "panel.png",
+        "lx": 1000,
+        "ly": 900,
+        "right": "helldiver1_panel.png",
+        "rx": 800,
+        "ry": 800,
+        "speaker": "",
+        "text": "(餐廳的門緩緩地打開了)",
+        "next": "get_in_dining"
+    },
+    "get_in_dining": {
+        "bg": "dining_hall.png",
+        "speaker": "",
+        "text": "你緩緩地踏進門內，不過暈厥以及想吐的感覺隨之湧上心頭",
+        "next": "get_in_dining_2"
+    },
+    "get_in_dining_2": {
+        "bg": "dining_hall.png",
+        "speaker": "",
+        "text": "破碎的殘肢以及斷成兩半的屍體散落在餐廳各處",
+        "next": "get_in_dining_3"
+    },
+    "get_in_dining_3": {
+        "bg": "dining_floor.png",
+        "left": "dead_marine.png",
+        "lx": 630,
+        "ly": 800,
+        "speaker": "",
+        "text": "你強忍著身體的不適感向著最近的屍體走去",
+        "next": "get_in_dining_4"
+    },
+    "get_in_dining_4": {
+        "bg": "dining_floor.png",
+        "left": "dead_marine.png",
+        "lx": 630,
+        "ly": 800,
+        "speaker": "",
+        "text": "從他手裡刺入菁英脖子的匕首不難看出祂生前與菁英拚死一戰的場景",
+        "next": "get_in_dining_5"
+    },
+    "get_in_dining_5": {
+        "bg": "dining_floor.png",
+        "left": "dead_marine.png",
+        "lx": 630,
+        "ly": 800,
+        "speaker": "庫柏",
+        "text": "真是夠操蛋的...",
+        "next": "get_in_dining_6"
+    },
+    "get_in_dining_6": {
+        "bg": "dining_floor.png",
+        "left": "guncase.png",
+        "lx": 630,
+        "ly": 700,
+        "speaker": "",
+        "text": "在翻看的過程中你注意到屍體下方還有一個看起來沒受到損傷的槍盒，不巧的是這個槍盒上了鎖",
+        "next": "get_in_dining_7"
+    },
+    "get_in_dining_7": {
+        "bg": "dining_floor.png",
+        "left": "guncase.png",
+        "lx": 630,
+        "ly": 700,
+        "choice": {
+            "(暴力解鎖)": "guncase_hand",
+            "(用一旁手榴彈的插銷解鎖)": "guncase_pick"
+        }
+    },
+    "guncase_pick": {
+        "bg": "dining_floor.png",
+        "left": "guncase_small.png",
+        "lx": 600,
+        "ly": 700,
+        "right": "helldiver1_combat.png",
+        "rx": 500,
+        "ry": 700,
+        "speaker": "庫柏",
+        "text": "看來巴德上次教我的那招居然真的能行",
+        "next": "guncase_pick_2"
+    },
+    "guncase_pick_2": {
+        "bg": "dining_floor.png",
+        "left": "guncase_small.png",
+        "lx": 600,
+        "ly": 700,
+        "right": "helldiver1_combat.png",
+        "rx": 500,
+        "ry": 700,
+        "lock_event": {
+            "success": "guncase_success",
+            "fail": "guncase_fail"
+        }
+    },
+    "guncase_success": {
+        "bg": "dining_floor.png",
+        "left": "open_guncase.png",
+        "lx": 600,
+        "ly": 700,
+        "right": "helldiver1_combat.png",
+        "rx": 500,
+        "ry": 700,
+        "speaker": "",
+        "text": "只聽喀搭一聲，槍盒被打開了",
+        "next": "open_guncase"
+    },
+    "guncase_fail": {
+        "bg": "dining_floor.png",
+        "left": "guncase_small.png",
+        "lx": 600,
+        "ly": 700,
+        "right": "helldiver1_combat.png",
+        "rx": 500,
+        "ry": 700,
+        "speaker": "",
+        "text": "鎖頭似乎被你弄壞了",
+        "next": "guncase_hand"
+    },
+    "guncase_hand": {
+        "bg": "dining_floor.png",
+        "left": "guncase.png",
+        "lx": 630,
+        "ly": 700,
+        "speaker": "庫柏",
+        "text": "這個鎖看起來應該算很好拆，似乎也不需要用著撬鎖技巧",
+        "next": "guncase_hand_2"
+    },
+    "guncase_hand_2": {
+        "bg": "dining_floor.png",
+        "left": "guncase_small.png",
+        "lx": 600,
+        "ly": 700,
+        "right": "helldiver1_warmup.png",
+        "rx": 500,
+        "ry": 700,
+        "battle": {
+            "enemy_name": "上鎖的槍盒",
+            "enemy_hp": "200",
+            "enemy_dmg": "0",
+            "options": [
+                ["用頭盔砸鎖", "attack"]
+            ],
+            "victory": "guncase_hand_3",
+            "defeat": "end"
+        }
+    },
+    "guncase_hand_3": {
+        "bg": "dining_floor.png",
+        "left": "open_guncase.png",
+        "lx": 600,
+        "ly": 700,
+        "right": "helldiver1_warmup.png",
+        "rx": 500,
+        "ry": 700,
+        "speaker": "庫柏",
+        "text": "這鎖是鈦合金做的吧，這麼難開",
+        "next": "open_guncase"
+    },
+    "open_guncase": {
+        "bg": "dining_floor.png",
+        "left": "open_guncase.png",
+        "lx": 600,
+        "ly": 700,
+        "right": "patriot.png",
+        "rx": 600,
+        "ry": 630,
+        "speaker": "",
+        "text": "只見槍盒裡面靜靜躺著一把[愛國者衝鋒槍]，將槍上膛後，你隨即加緊腳步前往艦橋停機坪",
+        "next": "open_guncase_1"
+    },
+    "open_guncase_1": {
+        "bg": "ground.png",
+        "speaker": "",
+        "text": "(槍砲聲)",
+        "next": "open_guncase_2"
+    },
+    "open_guncase_2": {
+        "bg": "ground.png",
+        "speaker": "???",
+        "text": "隊長...星盟的火力太強了...能量盾只能繼續維持五分鐘",
+        "next": "open_guncase_3"
+    },
+    "open_guncase_3": {
+        "bg": "ground.png",
+        "speaker": "???",
+        "text": "該死，再撐一下就好，庫柏還沒...庫柏!",
+        "next": "open_guncase_4"
+    },
+    "open_guncase_4": {
+        "bg": "ground.png",
+        "left": "helldiver1_combat.png",
+        "lx": 900,
+        "ly": 800,
+        "speaker": "庫柏",
+        "text": "巴德隊長...(喘息)大家都到了嗎?",
+        "next": "open_guncase_5"
+    },
+    "open_guncase_5": {
+        "bg": "ground.png",
+        "left": "helldiver1_combat.png",
+        "lx": 900,
+        "ly": 800,
+        "speaker": "巴德",
+        "text": "Beta和Delta小隊沒能撐到最後...其他小隊已經透過撤離艙先行前往昂可星了",
+        "next": "open_guncase_6"
+    },
+    "open_guncase_6": {
+        "bg": "ground.png",
+        "left": "helldiver1_combat.png",
+        "lx": 900,
+        "ly": 800,
+        "speaker": "巴德",
+        "text": "多姆，打開艙門，我們該走了",
+        "next": "open_guncase_7"
+    },
+    "open_guncase_7": {
+        "bg": "ground.png",
+        "left": "helldiver1_combat.png",
+        "lx": 900,
+        "ly": 800,
+        "speaker": "多姆",
+        "text": "是!",
+        "next": "open_guncase_8"
+    },
+    "open_guncase_8": {
+        "bg": "hellpod.png",
+        "speaker": "",
+        "text": "在你們三人都進入了撤離艙後，多姆啟動了撤離程序",
+        "next": "open_guncase_9"
+    },
+    "open_guncase_9": {
+        "bg": "hellpod_inside.png",
+        "speaker": "巴德",
+        "text": "庫柏...執行紅色九號吧",
+        "next": "open_guncase_10"
+    },
+    "open_guncase_10": {
+        "bg": "hellpod_inside.png",
+        "left": "briefcase.png",
+        "lx": 900,
+        "ly": 600,
+        "speaker": "",
+        "text": "語畢，巴德交給了你一個手提箱",
+        "next": "open_guncase_11"
+    },
+    "open_guncase_11": {
+        "bg": "hellpod_inside.png",
+        "left": "open_briefcase.png",
+        "lx": 900,
+        "ly": 700,
+        "speaker": "",
+        "text": "你打開了手提箱，內部是由一塊螢幕以及收音裝置所組成",
+        "next": "open_guncase_12"
+    },
+    "open_guncase_12": {
+        "bg": "hellpod_inside.png",
+        "left": "open_briefcase.png",
+        "lx": 900,
+        "ly": 700,
+        "speaker": "手提箱",
+        "text": "請說出口令，若您有生還的可能，請確認您已經做好向真理部報告的準備",
+        "choice": {
+            "(說出口令)(口令: 為了超級地球)": "open_guncase_13"
+        }
+    },
+    "open_guncase_13": {
+        "bg": "hellpod_inside.png",
+        "left": "open_briefcase.png",
+        "lx": 900,
+        "ly": 700,
+        "battle": {
+            "enemy_name": "手提箱",
+            "enemy_hp": "200",
+            "enemy_dmg": "1000",
+            "options": [
+                ["說出口令", "magic"]
+            ],
+            "victory": "activate_success",
+            "defeat": "activate_fail"
+        }
+    },
+    "activate_fail": {
+        "bg": "hellpod_inside.png",
+        "left": "open_briefcase.png",
+        "lx": 900,
+        "ly": 700,
+        "speaker": "手提箱",
+        "text": "真正的絕地潛兵不會忘記口令，受死吧民主的敵人!!!",
+        "next": "activate_fail_2"
+    },
+    "activate_fail_2": {
+        "bg": "hellpod_inside_explode.png",
+        "speaker": "",
+        "text": "一瞬間撤離艙內被強光所覆蓋",
+        "next": "activate_fail_3"
+    },
+    "activate_fail_3": {
+        "speaker": "",
+        "text": "在彌留之際你突然想起了手提箱的另外一個稱號",
+        "next": "activate_fail_4"
+    },
+    "activate_fail_4": {
+        "speaker": "",
+        "text": "「超級地球聯邦二型啟爆系統暨小型核彈自爆裝置」",
+        "next": "death3"
+    },
+    "death3": {
+        "bg": "superearth.png",
+        "speaker": "",
+        "text": "你死了\n死因: 民主價值不足",
+        "next": "end"
+    },
+    "activate_success": {
+        "bg": "hellpod_inside.png",
+        "left": "open_briefcase.png",
+        "lx": 900,
+        "ly": 700,
+        "speaker": "手提箱",
+        "text": "口令已確認，超級地球聯邦感謝您的奉獻",
+        "next": "activate_success_2"
+    },
+    "activate_success_2": {
+        "bg": "hellpod_inside_blur.png",
+        "speaker": "",
+        "text": "轟!!! 遠處一陣劇烈的搖晃以及刺眼的光襲來",
+        "next": "activate_success_3"
+    },
+    "activate_success_3": {
+        "bg": "scrap.jpg",
+        "speaker": "",
+        "text": "在搖晃過去之後，眾人不由得回頭望向SES黎明之槌號",
+        "next": "activate_success_4"
+    },
+    "activate_success_4": {
+        "bg": "scrap.jpg",
+        "speaker": "",
+        "text": "...或者說是它的殘骸",
+        "next": "activate_success_5"
+    },
+    "activate_success_5": {
+        "bg": "scrap.jpg",
+        "speaker": "多姆",
+        "text": "真不敢相信居然會有這一天",
+        "next": "activate_success_6"
+    },
+    "activate_success_6": {
+        "bg": "scrap.jpg",
+        "speaker": "庫柏",
+        "text": "是阿，誰能想的到呢?",
+        "next": "activate_success_7"
+    },
+    "activate_success_7": {
+        "bg": "window_scrap.png",
+        "speaker": "巴德",
+        "text": "該來的總會來的，我們能做的只有聽從命令繼續向前",
+        "next": "activate_success_8"
+    },
+    "activate_success_8": {
+        "bg": "window_scrap.png",
+        "speaker": "巴德",
+        "text": "調整航向，目標昂可",
+        "next": "activate_success_9"
+    },
+    "activate_success_9": {
+        "bg": "space.png",
+        "speaker": "",
+        "text": "撤離艙就這樣緩緩地沒入星宇之間",
+        "next": "end"
+    },
+    "end": {
+        "speaker": "系統",
+        "text": "遊戲結束，感謝遊玩。",
+        "choice": {
+            "重新開始": "start",
+            "離開遊戲": "quit"
+        }
+    }
+}

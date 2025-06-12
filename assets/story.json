@@ -1,44 +1,78 @@
 {
+    "template": {
+        "bg": "castle.png",
+        "left": "king.png",
+        "lx": 0,
+        "ly": 0,
+        "right": "king.png",
+        "rx": 0,
+        "ry": 0,
+        "speaker": "",
+        "text": "",
+        "next": "dest",
+        "choice": {
+            "name": "dest",
+            "": ""
+        },
+        "battle": {
+            "enemy_name": "",
+            "enemy_hp": "150",
+            "enemy_dmg": "25",
+            "options": [
+                ["拿劍劈砍", "attack"]
+            ],
+            "victory": "victory",
+            "defeat": "defeat"
+        },
+        "lock_event": {
+            "success": "door_opened",
+            "fail": "door_blocked"
+        },
+        "scan_event":{
+            "next": ""
+        }
+    },
     "start": {
-        "bg": "village.png",
+        "bg": "castle.png",
         "speaker": "旁白",
         "text": "從前，有一位英勇的騎士名叫凱恩，接受了國王的命令，要前往黑山打敗惡龍，拯救被囚禁的公主艾蓮娜。",
         "next": "village2"
     },
     "village2": {
-        "bg": "village.png",
+        "bg": "castle.png",
         "speaker": "國王",
         "text": "凱恩，這是我們唯一的希望。帶上你的劍與魔法，去打敗那條巨龍吧！",
         "next": "forest"
     },
     "forest": {
-        "bg": "forest.png",
+        "bg": "castle.png",
         "speaker": "凱恩",
         "text": "我一定會成功，為了王國，也為了我自己！",
         "next": "cave_entrance"
     },
     "cave_entrance": {
-        "bg": "cave.png",
+        "bg": "castle.png",
         "speaker": "旁白",
         "text": "在經過長途跋涉後，凱恩終於來到了黑山的山洞入口，巨龍就藏身其中……",
         "next": "dragon_intro"
     },
     "dragon_intro": {
-        "bg": "cave.png",
+        "bg": "castle.png",
         "speaker": "巨龍",
         "right": "dragon.png",
         "text": "愚蠢的人類，準備迎接你的末日吧！",
         "next": "dragon_battle"
     },
     "dragon_battle": {
-        "bg": "cave.png",
-        "battle": "True",
-        "enemy_hp": "150",
-        "victory": "victory",
-        "defeat": "defeat"
+        "bg": "castle.png",
+        "battle": {
+            "enemy_hp": "150",
+            "victory": "victory",
+            "defeat": "defeat"
+        }
     },
     "victory": {
-        "bg": "cave.png",
+        "bg": "castle.png",
         "speaker": "凱恩",
         "text": "終於結束了……我做到了！",
         "next": "rescue"
@@ -51,19 +85,19 @@
         "next": "ending"
     },
     "ending": {
-        "bg": "village.png",
+        "bg": "castle.png",
         "speaker": "旁白",
         "text": "凱恩成功打敗惡龍，救回了公主，成為了王國的英雄。",
         "next": "end"
     },
     "defeat": {
-        "bg": "cave.png",
+        "bg": "castle.png",
         "speaker": "旁白",
         "text": "凱恩不敵惡龍，犧牲在山洞之中。王國陷入了黑暗……",
         "next": "end"
     },
     "end": {
-        "bg": "black.png",
+        "bg": "castle.png",
         "speaker": "系統",
         "text": "遊戲結束，感謝遊玩。",
         "choice": {
@@ -72,7 +106,7 @@
         }
     },
     "quit": {
-        "bg": "black.png",
+        "bg": "castle.png",
         "speaker": "系統",
         "text": "歡迎再次挑戰！"
     }
