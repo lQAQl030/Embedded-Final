@@ -138,7 +138,7 @@
         "ry": 700,
         "speaker": "",
         "text": "你死了\n死因: 被豺狼一口咬住脖子導致頸動脈破裂，最後失血過多而亡",
-        "voice": "death2.wav",
+        "voice": "death.wav",
         "next": "end"
     },
     "face_jackal": {
