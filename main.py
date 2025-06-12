@@ -16,6 +16,9 @@ PI_IP = "192.168.137.46"
 
 # ====== 初始化 ======
 pygame.init()
+pygame.mixer.init()
+pygame.mixer.music.set_volume(1)
+voice_channel = pygame.mixer.Channel(0)
 screen = pygame.display.set_mode((1280, 720))
 # font = pygame.font.Font(FONT_PATH, 36)
 font = pygame.font.SysFont("Microsoft JhengHei", 36, True)
@@ -37,6 +40,7 @@ char_index = 0
 type_timer = 0
 type_delay = 30
 image_cache = {}
+voice_active = True
 
 # ====== 戰鬥狀態 ======
 player_hp = 100
@@ -61,6 +65,11 @@ lock_next_id = ""
 lock_fail_id = ""
 
 # ====== 工具函式 ======
+def play_voice(filename):
+    sound = pygame.mixer.Sound(os.path.join(SFX_DIR, filename))
+    voice_channel.stop()  # 先停止之前的語音
+    voice_channel.play(sound)
+
 def wrap_text(text, font, max_width):
     lines = []
     paragraphs = text.split("\n")
@@ -246,6 +255,12 @@ while running:
     draw_character(node.get("left"), node.get("lx"), node.get("ly"))
     draw_character(node.get("right"), node.get("rx"), node.get("ry"))
 
+    # 播聲音
+    voice = script[current_id].get("voice")
+    if voice and voice_active:
+        voice_active = False
+        play_voice(voice)
+
     if battle := node.get("battle"):
         enemy_name = battle["enemy_name"]
         enemy_hp = float(battle["enemy_hp"]) if (enemy_hp == -233) else enemy_hp
@@ -254,9 +269,11 @@ while running:
         draw_battle()
         if enemy_hp <= 0:
             current_id = battle["victory"]
+            voice_active = True
             reset_battle()
         elif player_hp <= 0:
             current_id = battle["defeat"]
+            voice_active = True
             reset_battle()
     elif lock_picking_active:
         lock_button = draw_lock_picking()
@@ -264,10 +281,12 @@ while running:
             pygame.time.delay(1000)
             current_id = lock_next_id
             lock_picking_active = False
+            voice_active = True
         elif lock_attempts >= lock_max_attempts:
             pygame.time.delay(1000)
             current_id = lock_fail_id
             lock_picking_active = False
+            voice_active = True
     elif scan_active:
         scan_button = draw_scanning()
         if scan_success:
@@ -275,6 +294,7 @@ while running:
             current_id = scan_next_id
             scan_active = False
             scan_attempt = False
+            voice_active = True
     else:
         if "choice" in node:
             choosing = True
@@ -298,6 +318,7 @@ while running:
                         typed_text = ""
                         char_index = 0
                         choosing = False
+                        voice_active = True
                         break
             elif node.get("battle"):
                 for rect, action in choice_buttons:
@@ -334,6 +355,7 @@ while running:
                     current_id = script[current_id]["next"]
                     typed_text = ""
                     char_index = 0
+                    voice_active = True
 
     clock.tick(60)
 
